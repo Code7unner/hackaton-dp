@@ -4,7 +4,7 @@
       <div class="routes">
         <router-link to="/" class="nav-item">Мой дом</router-link>
         <router-link to="/eventdiscussions" class="nav-item">Услуги</router-link>
-        <router-link to="/" class="nav-item">Жилищная компания</router-link>
+        <router-link to="/discussion" class="nav-item">Жилищная компания</router-link>
         <router-link to="/" class="nav-item">Личный кабинет</router-link>
       </div>
   </div>

@@ -14,6 +14,9 @@ export default {
   components: {
     navBar,
     mainFooter
+  },
+  data() {
+    return {}
   }
 }
 </script>
