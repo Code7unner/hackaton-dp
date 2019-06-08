@@ -32,6 +32,20 @@ export default {
       customEvents: [{}, {}],
       houseEvents: [{}, {}, {}, {}]
     }
+  },
+  computed: {
+    user() {
+      return this.$store.state.user
+    }
+  },
+  created() {
+    fetch('/events/')
+    .then(data => {
+      this.houseEvents = data
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 }
 </script>
