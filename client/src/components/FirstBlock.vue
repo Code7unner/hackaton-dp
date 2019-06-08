@@ -4,8 +4,8 @@
       <div v-for="(event, index) in houseEvents" :key="index" class="event">
         <div class="event-img"></div>
         <div class="event-contetn">
-          <div class="header">ОТКЛЮЧЕНИЕ ВОДЫ</div>
-          <div class="content">Тридцать тельность работ составит 10 рабочих дней, по истечению этого срока подача воды юудет востановлена.</div>
+          <div class="header">{{event.type}}</div>
+          <div class="content">{{event.info}}</div>
           <div class="btn">Подробнее</div>
         </div>
       </div>
@@ -41,8 +41,10 @@ export default {
   created() {
     fetch(`/events/${this.user.id}`)
     .then(data => {
-      console.log("data:", data)
-      this.houseEvents = data.body
+      data.json()
+        .then(events => {
+          this.houseEvents = events
+        })
     })
     .catch(err => {
       console.log(err)
