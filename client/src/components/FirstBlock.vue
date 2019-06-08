@@ -34,13 +34,14 @@ export default {
     }
   },
   computed: {
-    user() {
+    user: function() {
       return this.$store.state.user
     }
   },
   created() {
-    fetch('/events/')
+    fetch(`/events/${this.user.id}`)
     .then(data => {
+      console.log("data:", data)
       this.houseEvents = data
     })
     .catch(err => {

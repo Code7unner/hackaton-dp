@@ -25,7 +25,7 @@ function create(req, res) {
 }
 
 function get(req, res) {
-	HouseEvent.find({user: req.user.id})
+	HouseEvent.find({user: req.params.id})
 		.populate('house')
 		.exec((err, data) => {
 			if (err || !data) {
