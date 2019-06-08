@@ -42,7 +42,7 @@ export default {
     fetch(`/events/${this.user.id}`)
     .then(data => {
       console.log("data:", data)
-      this.houseEvents = data
+      this.houseEvents = data.body
     })
     .catch(err => {
       console.log(err)
