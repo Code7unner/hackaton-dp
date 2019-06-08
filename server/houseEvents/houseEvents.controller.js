@@ -1,25 +1,20 @@
-const express = require('express'),
-	app = express()
+const express = require('express');
+const app = express();
 
-const db = require('../_helpers/db'),
-	Location = db.Location,
-	HouseEvent = db.HouseEvent
+const db = require('../_helpers/db');
+const Location = db.Location;
+const HouseEvent = db.HouseEvent;
 
-function add(req, res) {
-	const address = {
-		city: req.body.city,
-		street: req.body.street, 
-		house: req.body.house
-	}
-
-	Location.findOne(address)
-		.then(data => {
-			console.log("data:", data);
-			if (!data) {
+function create(req, res) {
+	Location.findOne({user: req.user.id})
+		.then(location => {
+			if (!location) {
 				return res.status(404).json('There is no such address');
 			} else {
 				new HouseEvent({
-					house: data._id,
+					user: req.user.id,
+					info: req.body.info,
+					house: location._id,
 					type: req.body.type
 				})
 					.save()
@@ -30,7 +25,7 @@ function add(req, res) {
 }
 
 function get(req, res) {
-	HouseEvent.find({})
+	HouseEvent.find({user: req.user.id})
 		.populate('house')
 		.exec((err, data) => {
 			if (err || !data) {
@@ -43,6 +38,6 @@ function get(req, res) {
 
 //Exporting all the functions
 module.exports = {
-	add,
+	create,
 	get
 };

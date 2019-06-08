@@ -8,7 +8,7 @@ const schema = new Schema({
 	street: {type: String, required: true},
 	house: {type: String, required: true},
 	apartment: {type: String, required: true},
-	inmate: {type: Schema.Types.ObjectId, ref: 'User'}
+	user: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 
 schema.set('toJSON', {virtuals: true});
