@@ -1,0 +1,23 @@
+{
+  "name": "housing-and-communal-services",
+  "version": "1.0.0",
+  "description": "Simple hackaton project for housing and communal service",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www"
+  },
+  "author": "Limbus",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.16.1",
+    "express-validator": "^5.3.1",
+    "http": "0.0.0",
+    "mongoose": "^5.5.12",
+    "morgan": "^1.9.1",
+    "rootpath": "^0.1.2"
+  }
+}
