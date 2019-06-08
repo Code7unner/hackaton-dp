@@ -1,7 +1,14 @@
 <template>
   <div id="first-block">
     <div class="house-events">
-      <div v-for="(event, index) in houseEvents" :key="index" class="event"></div>
+      <div v-for="(event, index) in houseEvents" :key="index" class="event">
+        <div class="event-img"></div>
+        <div class="event-contetn">
+          <div class="header">ОТКЛЮЧЕНИЕ ВОДЫ</div>
+          <div class="content">Тридцать тельность работ составит 10 рабочих дней, по истечению этого срока подача воды юудет востановлена.</div>
+          <div class="btn">Подробнее</div>
+        </div>
+      </div>
     </div>
     <div class="custom-events">
       <div v-for="(event, index) in customEvents" :key="index" class="event">
@@ -40,7 +47,9 @@ export default {
   grid-template-columns: 3fr 1fr;
   grid-template-rows: 90%;
   height: 70vh;
+  padding: 2rem;
   column-gap: 2em;
+  
 
   .house-events {
     &::-webkit-scrollbar-track {
@@ -62,7 +71,6 @@ export default {
 
 
     position: relative;
-    margin-left: 2em;
     overflow-y: scroll;
     display: flex;
     height: 100%;
@@ -70,9 +78,44 @@ export default {
     flex-direction: column;
 
     .event {
-      min-height: 35vh;
-      background-color: blue;
-      margin-top: 1em; margin-bottom: 1em;
+      display: grid;
+      grid-template-columns: 15vw 1fr;
+      column-gap: 1em;
+      height: 15vw;
+      margin: 0.6em 0;
+
+      .event-img {
+        width: 15vw;
+        height: 100%;
+        padding: 0;
+        background: rgba(0, 0, 0, 0.39);
+      }
+      
+      .event-contetn {
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+
+        .header {
+          padding: 0.75em 0.5em;
+          color: $julias-orange;
+          border-bottom: 2px solid $julias-orange;
+        }
+
+        .content {
+          padding: 0.75em 0.5em;
+          color: $julias-black;
+          border-bottom: 2px solid $julias-orange;
+        }
+
+        .btn {
+          padding: 0.75em 0.5em;
+          color: $julias-black;
+          text-align: right;
+
+
+        }
+      }
     }
   }
 
@@ -98,7 +141,7 @@ export default {
     position: relative;
     margin-right: 0.5em;
     overflow-y: scroll;
-    padding: 1em;
+    padding: 1.5em;
     height: 100%;
 
 
