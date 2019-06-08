@@ -50,6 +50,4 @@ export default {
     width: 30%;
   }
 }
-
-
 </style>

@@ -7,33 +7,54 @@
     <div class="company-header">
       Название компании
     </div>
-    <div id="company-about">
-      <div class="">Lorem eum?</div>
-      <div class="btn">
-        <input type="button" value="Связаться с управляющей компанией">
-      </div>
-      <div class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ab rem veniam reprehenderit vel delectus.</div>
+    <div class="company-reating">
+      №3  РЕЙТИНГА БУДКИ
     </div>
-    <div id="company-projects">
-      <div class="content-item">
-        <div class="content-item__img"></div>
-        <div class="content-item__info">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam rem magni reprehenderit deserunt, commodi eveniet?</div>
-        <div class="content-item__btn">
-          <span>Смотреть фотоотчет</span>
-        </div>
+    <div id="company-about">
+      <div>
+        <p class="note">
+        Директор компании Хуй с Горыныч.
+        </p>
+
+        <p class="note">
+          Наш центральный офис находится по адресу г.Владивосток; ул. **** дом ****.
+        </p>
+
+        <p class="note">
+          Время работы офиса:  пн-пт 10:00 - 19:30
+        </p>
+
+        <p class="note">
+          Контактный телефон: 
+        </p>
+
+        <p style="padding-left: 50px">
+          Справочная линия:  +7-222-222-22-22
+        </p>
+
+        <p style="padding-left: 50px">
+          Главный офис:  +7-222-222-22-22
+        </p>
       </div>
-      <div class="content-item">
-        <div class="content-item__img"></div>
-        <div class="content-item__info"></div>
-        <div class="content-item__btn"></div>
+    </div>
+    <div id="company-statistic">
+      <div class="item izeb">
+        <div class="item-content"><span class="left-word">Одобрено заявок:</span><span>25</span></div>
       </div>
-      <div class="content-item">
-        <div class="content-item__img"></div>
-        <div class="content-item__info"></div>
-        <div class="content-item__btn"></div>
+      <div class="item">
+        <div class="item-content"><span class="left-word">Выполнено с положительными оценками:</span><span>25</span></div>
       </div>
-      <div class="btn">
-        <input type="button" value="Все проекты компании">
+      <div class="item izeb">
+        <div class="item-content"><span class="left-word">Средняя оценка выполненных заявок:</span><span>4</span></div>
+      </div>
+      <div class="item">
+        <div class="item-content"><span class="left-word">Среднее время отклика на заявку:</span><span>3 дня</span></div>
+      </div>
+      <div class="item izeb">
+        <div class="item-content"><span class="left-word">Среднее время отклика на заявку:</span><span>3 дня</span></div>
+      </div>
+      <div class="item">
+        <div class="item-content"><span class="left-word">Среднее время отклика на заявку:</span><span>3 дня</span></div>
       </div>
     </div>
   </div>
@@ -59,7 +80,7 @@ export default {
   background-size: cover;
   display: grid;
   grid-template-columns: 4fr 5fr;
-  grid-template-rows: 150px 850px 150px;
+  grid-template-rows: 120px 50px 400px 150px;
   padding: 3rem;
 
   .bg-shadow {
@@ -67,10 +88,11 @@ export default {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.45);
   }
 
   .julias-izeb {
+    z-index: 2;
     position: absolute;
     border: 0;
     background: $background-color;
@@ -81,6 +103,15 @@ export default {
     z-index: 2;
     grid-column: 1/3;
     font-size: $xl-font-size;
+    line-height: 112px;
+    justify-self: center;
+    align-self: center;
+    color: $julias-white;
+  }
+  .company-reating {
+    z-index: 2;
+    grid-column: 1/3;
+    font-size: $m-font-size;
     line-height: 112px;
     justify-self: center;
     align-self: center;
@@ -99,71 +130,45 @@ export default {
     color: $julias-white;
     z-index: 2; 
     display: grid;
-    grid-template-rows: 4fr 1fr 3fr;
-    grid-row-gap: 40px;
-    padding: 3rem;
-  }
+    grid-template-rows: 1fr;
+    grid-row-gap: 20px;
+    padding: 1rem;
 
-  #company-projects {
-    z-index: 2;
-    position: relative;
-    display: grid;
-    grid-template-rows: repeat(3, 190px) 1fr;
-    grid-row-gap: 50px;
-
-    .content-item {
-      padding: 10px;
-      background: rgba(240, 240, 240, 0.4);
-      display: grid;
-      grid-template-rows: repeat(2, 80px);
-      grid-template-columns: 170px 1fr;
-      grid-row-gap: 10px;
-      grid-column-gap: 20px;    
-      font-size: $s-font-size;
-      line-height: 40px;
-
-      .content-item__img {
-        grid-row: 1/3;
-        background: red;
-      }
-
-      .content-item__btn {
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        text-align: center;
-      }
+    .note {
+      margin-top: 25px;
     }
 
+    p {
+      margin: 0;
+    }
   }
-  .btn {
+
+  #company-statistic {
+    z-index: 2;
     position: relative;
     display: flex;
-    align-self: center;
-    justify-content: center;
-    width: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: flex-start;
 
-    input {
-      width: 100%;
-      padding: 0.8em;
-      background: $julias-white;
-      color: $julias-black;
-      border: 0;
-      transition: 0.5s;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    .item {
+      display: flex;
+      align-items: center;
       font-size: $s-font-size;
-      line-height: 0px;
+      height: 54px;
+    }
 
-      &:hover {
-        border-radius: 35px;
-        color: $julias-white;
-        background: $background-color;
-      }
+    .izeb {
+      padding-left: 3em;
+    }
 
-      &:focus {
-        outline: 0;
-      }
-      
+    .left-word {
+      margin-right: 2em;
+    }
+
+    .item-content {
+      padding: 0.5em 1.3em;
+      background: rgba(240, 240, 240, 0.7);
     }
   }
 }

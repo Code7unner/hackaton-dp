@@ -3,19 +3,15 @@
     <hr style="top: 2px; height: 3px;" class="julias-izeb">
     <hr style="top: 18px; height: 2px;" class="julias-izeb">
     <hr style="top: 33px; height: 1px;" class="julias-izeb">
-    <div class="header">ВЫЗОВ МАСТЕРА НА ДОМ</div>
+    <div class="header">Подать заявку в управляющую компанию</div>
     <div class="master-type">
       <select v-model="masterSelected" name="masterPick" id="">
-        <option hidden disabled value="">Выбор мастера</option>
+        <option hidden disabled value="">Выбор категорию</option>
         <option v-for="(master, index) in masterList" :key="index" :value="master.id">{{master.name}}</option>
       </select>
     </div>
     <div class="offer-disc"><textarea v-model="offerDisc" placeholder="Расскажите о своей проблеме..."></textarea></div>
-    <div class="offer-time">
-      <select v-model="timeSelected" name="timePick" id="">
-        <option hidden disabled value="">00.00.00</option>
-      </select></div>
-    <div class="complite-btn"><input type="button" value="ВЫЗВАТЬ МАСТЕРА"></div>
+    <div class="complite-btn"><input type="button" value="Отправить заявку"></div>
   </div>
 </template>
 
@@ -42,11 +38,12 @@ export default {
   background: $background-color;
   position: relative;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr 3fr 2fr;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 270px 2fr;
   justify-items: center;
   align-items: center;
   padding: 1em;
+  padding-top: 50px;
 
   .julias-izeb {
     position: absolute;
@@ -64,7 +61,6 @@ export default {
   }
 
   .master-type {
-    align-self: flex-start;
     grid-row: 2;
     background: $julias-white;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
@@ -72,16 +68,16 @@ export default {
     
     select {
       width: 21vw;
-      height: 85px;
+      height: 60px;
       text-align: center;
       text-align-last: center;
-      font-size: $m-font-size;
+      font-size: $s-font-size;
       line-height: 40px;
       font-family: 'Blacker Sans Light';
-      padding-right: 15px;
+      padding-right: 25px;
       -webkit-appearance: none;
       transition: 0.5s;
-      background: url(../assets/select.svg) no-repeat right 20px center/30px 15px!important;       
+      background: url(../assets/select.svg) no-repeat right 20px center/20px 15px!important;       
       border: 0;  
       
 
@@ -95,8 +91,8 @@ export default {
     grid-row: 2;
 
     textarea {
-      height: 200px;
-      width: (26vw - 2vw);
+      height: 150px;
+      width: (62vw - 2vw);
       resize: none;
       box-shadow: inset 7px 7px 7px rgba(243, 100, 77, 0.2);
       font-size: $s-font-size;
@@ -108,39 +104,17 @@ export default {
         outline: 0;
       }
     }
-  }
-
-  .offer-time {
-    align-self: flex-start;
-    grid-row: 2; 
-
-    select {
-      width: 21vw;
-      height: 85px;
-      text-align-last: center;
-      font-size: $m-font-size;
-      line-height: 40px;
-      font-family: 'Blacker Sans Light';      
-      -webkit-appearance: none;
-      color: $julias-black;
-      transition: 0.5s;
-      border: 0;
-
-      &:focus {
-        outline: 0;
-      }
-    }
-  }
+  }  
 
   .complite-btn {
     grid-column: 2/3;
 
     input {
-      font-size: $m-font-size;
+      font-size: $s-font-size;
       color: $julias-black;
       border-color: rgba(0, 0, 0, 0);
       width: 26vw;
-      height: 80px;
+      height: 60px;
       border-width: 0;
       background: $julias-white;
       transition: 0.5s;
