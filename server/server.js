@@ -21,8 +21,8 @@ app.use(cors({ origin: process.env.CLIENT_URL }));
 // initialize express-session to allow us track the logged-in user across sessions.
 app.use(
   session({
-    key: "user_sid",
-    secret: "secret",
+    key: 'user_sid',
+    secret: 'secret',
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -35,7 +35,11 @@ app.use(
 // app.use(jwt());
 
 // api routes
-app.use("/users", require("./routes/user_routes.js"));
+app.use('/users', require('./routes/user_routes.js'));
+app.use('/locations', require('./routes/location_routes.js'));
+app.use('/events', require('./routes/house_event_routes.js'));
+app.use('/petitions', require('./routes/petition_routes.js'));
+app.use('/companies', require('./routes/company_routes.js'));
 
 app.use(errorHandler);
 
