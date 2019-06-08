@@ -12,8 +12,8 @@
     </div>
     <div class="custom-events">
       <div v-for="(event, index) in customEvents" :key="index" class="event">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, facere! Mollitia nam porro corporis est possimus quidem itaque! Tempora est aut, magni nostrum autem soluta eius quaerat ipsum tenetur sint.</p>
-        <p style="text-align: center;">подписали 10 из 120</p>
+        <p>{{event.info}}</p>
+        <p style="text-align: center;">подписали {{event.counts}} из 120</p>
         <div class="btn">
           <input class="accept" type="button" value="Подписать">
         </div>
@@ -47,7 +47,20 @@ export default {
         })
     })
     .catch(err => {
-      console.log(err)
+      console.log("event err:", err)
+    })
+
+    fetch(`/petitions/${this.user.id}`)
+    .then(data => {
+      console.log("data:", data)
+      data.json()
+        .then(petitions => {
+          console.log("petitions:", petitions)
+          this.customEvents = petitions
+        })
+    })
+    .catch(err => {
+      console.log("petitions err:", err)
     })
   }
 }
