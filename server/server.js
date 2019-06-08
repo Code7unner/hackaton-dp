@@ -1,12 +1,12 @@
 require("rootpath")();
 const express = require("express");
 const bodyParser = require("body-parser");
+const passport = require('passport');
 const app = express();
 const expressValidator = require("express-validator");
 app.use(expressValidator());
 const cors = require("cors");
 
-// const jwt = require("_helpers/jwt");
 const errorHandler = require("_helpers/error-handler");
 const cookieparser = require("cookie-parser");
 const session = require("express-session");
@@ -18,21 +18,11 @@ app.use(morgan("dev"));
 app.use(cookieparser());
 app.use(cors({ origin: process.env.CLIENT_URL }));
 
-// initialize express-session to allow us track the logged-in user across sessions.
-app.use(
-  session({
-    key: 'user_sid',
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      expires: 600000
-    }
-  })
-);
+//Passport middleware
+app.use(passport.initialize());
 
-// use JWT auth to secure the api
-// app.use(jwt());
+//Passport config
+require('./_helpers/passport')(passport);
 
 // api routes
 app.use('/users', require('./routes/user_routes.js'));

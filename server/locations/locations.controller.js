@@ -1,15 +1,15 @@
-const express = require('express'),
-	app = express()
+const express = require('express');
+const app = express();
 
-const db = require('../_helpers/db'),
-	User = db.User,
-	Location = db.Location
+const db = require('../_helpers/db');
+const Location = db.Location;
+const User = db.User;
 
-function add(req, res) {
-	User.findOne({username: req.body.username})
-		.then(data => {
-			if (!data) {
-				return res.status(404).json('No such user');
+function create(req, res) {
+	Location.findOne({user: req.user.id})
+		.then(location => {
+			if (location) {
+				return res.status(400).json('That location already exists')
 			} else {
 				new Location({
 					country: req.body.country,
@@ -17,17 +17,16 @@ function add(req, res) {
 					street: req.body.street,
 					house: req.body.house,
 					apartment: req.body.apartment,
-					inmate: data._id
+					user: req.user.id
 				})
 					.save()
 					.then(result => res.json(result))
-					.catch(err => res.json(err));
 			}
 		})
-		.catch(err => res.json(err))
+		.catch(er => res.json(err))	
 }
 
 //Exporting all the functions
 module.exports = {
-	add
+	create
 };
