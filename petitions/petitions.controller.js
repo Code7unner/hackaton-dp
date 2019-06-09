@@ -43,7 +43,7 @@ async function vote(req, res) {
 		return res.json(petition.counts);
 	}
 
-	Petition.findOneAndUpdate({id: req.params.petition_id}, {$inc:{'petition.counts'}})
+	Petition.findOneAndUpdate({id: req.params.petition_id}, {$inc:'petition.counts'})
 		.then(data => {
 			if (!data) {
 				return res.status(404).json('Petition not found');

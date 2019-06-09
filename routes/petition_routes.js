@@ -11,7 +11,7 @@ router.post('/', auth, petitionController.create);
 // get list of petitions of current house
 router.get('/:id', petitionController.get);
 // change state of petition (voting)
-router.pull('/:petition_id', petitionController.vote);
+router.post('/:petition_id', petitionController.vote);
 // // change state of petition (unvoting)
 router.delete('/:petition_id', petitionController.unvote);
 
