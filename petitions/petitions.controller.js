@@ -15,7 +15,8 @@ function create(req, res) {
 					user: req.user.id,
 					house: data._id,
 					info: req.body.info,
-					counts: req.body.counts
+					counts: req.body.counts,
+					content: req.body.content
 				})
 					.save()
 					.then(result => res.json(result))

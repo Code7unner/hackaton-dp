@@ -6,7 +6,8 @@ const schema = new Schema({
     user: {type: Schema.Types.ObjectId, ref: 'User'},
 	house: {type: Schema.Types.ObjectId, ref: 'Location'},
 	type: {type: String, required: true},
-    info: {type: String, required: true},
+	info: {type: String, required: true},
+	content: {type: String},
 	date: {type: Date, default: Date.now}
 });
 

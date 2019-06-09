@@ -36,6 +36,18 @@ function get(req, res) {
 		})
 }
 
+function getById(req, res) {
+	HouseEvent.findOne({'_id': req.params.id})
+		.then(event => {
+			if (!event) {
+				return res.status(404).json('Event not found');
+			} else {
+				return res.json(event);
+			}
+		})
+		.catch(err => console.log(err))
+}
+
 //Exporting all the functions
 module.exports = {
 	create,

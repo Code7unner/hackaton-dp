@@ -13,5 +13,6 @@ module.exports = {
 	HouseEvent: require('../houseEvents/houseEvent.model'),
 	Petition: require('../petitions/petition.model'),
 	Post: require('../posts/post.model'),
-	Company: require('../companies/company.model')
+	Company: require('../companies/company.model'),
+	Offer: require('../offers/offer.model')
 };

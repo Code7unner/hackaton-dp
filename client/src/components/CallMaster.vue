@@ -5,13 +5,13 @@
     <hr style="top: 33px; height: 1px;" class="julias-izeb">
     <div class="header">Подать заявку в управляющую компанию</div>
     <div class="master-type">
-      <select v-model="masterSelected" name="masterPick" id="">
+      <select v-model="typeSelected" name="masterPick" id="">
         <option hidden disabled value="">Выбор категорию</option>
         <option v-for="(master, index) in masterList" :key="index" :value="master.id">{{master.name}}</option>
       </select>
     </div>
     <div class="offer-disc"><textarea v-model="offerDisc" placeholder="Расскажите о своей проблеме..."></textarea></div>
-    <div class="complite-btn"><input type="button" value="Отправить заявку"></div>
+    <div class="complite-btn"><input @click="offer" type="button" value="Отправить заявку"></div>
   </div>
 </template>
 
@@ -19,15 +19,23 @@
 export default {
   data() {
     return {
-      masterSelected: '',
+      typeSelected: '',
       masterList: [
-        {id: 0, name: 'Сантехник'},
-        {id: 1, name: 'Электрик'}
+        {id: 'local', name: 'Локальное'},
+        {id: 'house', name: 'Внутридомовое'},
+        {id: 'yard', name: 'Дворовое'}
+
       ],
-      offerDisc: '',
-      timeSelected: ''
+      offerDisc: ''
     }
-  }
+  },
+  methods: {
+    offer() {
+      fetch(``, {method: 'POST', body: {
+
+      },)
+    }
+  },
 }
 </script>
 

@@ -30,6 +30,7 @@ app.use('/locations', require('./routes/location_routes.js'));
 app.use('/events', require('./routes/house_event_routes.js'));
 app.use('/petitions', require('./routes/petition_routes.js'));
 app.use('/companies', require('./routes/company_routes.js'));
+app.use('/offers', require('./routes/offer_routes.js'));
 
 //Set static folder
 app.use(express.static('client/build'));
