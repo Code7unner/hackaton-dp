@@ -37,13 +37,14 @@ function get(req, res) {
 }
 
 async function vote(req, res) {
-	const petition = await Petition.findOne({id: req.params.petition_id});
-
+	const petition = await Petition.findOne({'_id': req.params.petition_id});
+	console.log(req.params.petition_id)
+	console.log('pet',petition)
 	if (petition.counts == 120) {
 		return res.json(petition.counts);
 	}
 
-	Petition.findOneAndUpdate({id: req.params.petition_id}, {$inc:'petition.counts'})
+	Petition.findOneAndUpdate({'_id': req.params.petition_id}, {counts: petition.counts+1})
 		.then(data => {
 			if (!data) {
 				return res.status(404).json('Petition not found');

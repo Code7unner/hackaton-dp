@@ -6,7 +6,7 @@
         <div class="event-contetn">
           <div class="header">{{event.type}}</div>
           <div class="content">{{event.info}}</div>
-          <div class="btn">Подробнее</div>
+          <div @click="openEvent(event.id)" class="btn">Подробнее</div>
         </div>
       </div>
     </div>
@@ -15,10 +15,10 @@
         <p>{{event.info}}</p>
         <p style="text-align: center;">подписали {{event.counts}} из 120</p>
         <div class="btn">
-          <input class="accept" type="button" value="Подписать">
+          <input class="accept" @click="votePetition(event)" type="button" value="Подписать">
         </div>
         <div class="btn">
-          <input class="noaccept" type="button" value="Не подписывать">
+          <input class="noaccept" @click="unvotePetition(event)" type="button" value="Не подписывать">
         </div>
       </div>
     </div>
@@ -32,6 +32,17 @@ export default {
       customEvents: [{}, {}],
       houseEvents: [{}, {}, {}, {}]
     }
+  },
+  methods: {
+    votePetition(event) {
+      fetch(`/petitions/${event.id}`, {method: 'POST'})
+      event.counts++
+      alert('Спасибо за голос')
+    },
+    unvotePetition(id) {
+      fetch(`/petitions/${event.id}`, {method: 'DELETE'})
+      
+    }     
   },
   computed: {
     user: function() {
@@ -193,6 +204,10 @@ export default {
 
         &:hover {
           border-radius: 60px;
+        }
+
+        &:focus {
+          outline: none;
         }
       }
 
