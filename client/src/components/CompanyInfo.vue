@@ -5,23 +5,23 @@
     <hr style="top: 18px; height: 2px;" class="julias-izeb">
     <hr style="top: 33px; height: 1px;" class="julias-izeb">
     <div class="company-header">
-      Название компании
+      БРИЗ
     </div>
     <div class="company-reating">
-      №3  РЕЙТИНГА БУДКИ
+      №3  В рейтенге компаний
     </div>
     <div id="company-about">
       <div>
         <p class="note">
-        Директор компании Хуй с Горыныч.
+          Директор компании Кейс Дмитрий Леонидович
         </p>
 
         <p class="note">
-          Наш центральный офис находится по адресу г.Владивосток; ул. **** дом ****.
+          Наш центральный офис находится по адресу г.Владивосток; ул. Лиловая дом 2.
         </p>
 
         <p class="note">
-          Время работы офиса:  пн-пт 10:00 - 19:30
+          Время работы офиса:  пн-пт 10:00 - 17:00
         </p>
 
         <p class="note">
@@ -29,32 +29,28 @@
         </p>
 
         <p style="padding-left: 50px">
-          Справочная линия:  +7-222-222-22-22
-        </p>
-
-        <p style="padding-left: 50px">
-          Главный офис:  +7-222-222-22-22
+          Главный офис:  8 (924) 206-09-50
         </p>
       </div>
     </div>
     <div id="company-statistic">
       <div class="item izeb">
-        <div class="item-content"><span class="left-word">Одобрено заявок:</span><span>25</span></div>
+        <div class="item-content"><span class="left-word">Всего заявок:</span><span>{{stats.offerCount}}</span></div>
       </div>
       <div class="item">
-        <div class="item-content"><span class="left-word">Выполнено с положительными оценками:</span><span>25</span></div>
+        <div class="item-content"><span class="left-word">Выполнено:</span><span>{{stats.acceptedOffers}}</span></div>
       </div>
       <div class="item izeb">
-        <div class="item-content"><span class="left-word">Средняя оценка выполненных заявок:</span><span>4</span></div>
+        <div class="item-content"><span class="left-word">Отклонено:</span><span>{{stats.rejectedOffers}}</span></div>
       </div>
       <div class="item">
-        <div class="item-content"><span class="left-word">Среднее время отклика на заявку:</span><span>3 дня</span></div>
+        <div class="item-content"><span class="left-word">Ожидает ответа:</span><span>{{stats.waitingOffers}}</span></div>
       </div>
       <div class="item izeb">
-        <div class="item-content"><span class="left-word">Среднее время отклика на заявку:</span><span>3 дня</span></div>
+        <div class="item-content"><span class="left-word">Среднее оценка работы:</span><span>{{stats.awerageRate}}/5</span></div>
       </div>
       <div class="item">
-        <div class="item-content"><span class="left-word">Среднее время отклика на заявку:</span><span>3 дня</span></div>
+        <div class="item-content"><span class="left-word">Среднее время отклика на заявку:</span><span>{{stats.awerageReponceTime}} дня</span></div>
       </div>
     </div>
   </div>
@@ -62,11 +58,19 @@
 
 <script>
 export default {
-   data() {
-     return {
-
-     }
-   }
+  data() {
+    return {
+      stats: {}
+    }
+  },
+  created() {
+    fetch('/offers/statistic').then(data => {
+      data.json().then(stats => {
+        this.stats = stats
+         console.log(stats)
+        })      
+    }) 
+  }
 }
 </script>
 

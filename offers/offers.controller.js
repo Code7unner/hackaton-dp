@@ -6,18 +6,19 @@ const Offer = db.Offer;
 const Location = db.Location;
 
 function create(req, res) {
-    Location.findOne({user: req.user.id})
+    Location.findOne({user: req.params.id})
         .then(location => {
             if (!location) {
                 return res.status(404).json('Location not found')
             } else {
                 new Offer({
-                    user: req.user.id,
+                    user: req.params.id,
 					info: req.body.info,
 					house: location._id,
                     type: req.body.type
                 })
                     .save()
+                    .then(() => res.sendStatus(200))
             }
         })
         .catch(err => console.log(err))
@@ -69,6 +70,46 @@ function getByType(req, res) {
         .catch(err => console.log(err))
 }
 
+function stats(req, res) {
+    console.log('offer')
+    Offer.find({})
+        .then(offer => {
+            let stats = {
+                offerCount: 0,
+                acceptedOffers: 0,
+                rejectedOffers:0,
+                complitedOffers: 0,
+                awerageRate: 0,
+                waitingOffers: 0,
+                ratedOffers: 0,
+                awerageReponceTime: 3,
+                capFondRepair: 999542
+            }
+
+            offer.forEach(item => {
+                stats.offerCount++
+                if (item.status == 'rejected') stats.rejectedOffers++
+                if (item.status == 'working') stats.acceptedOffers++
+                if (item.status == 'complited') {
+                    stats.complitedOffer++
+                    stats.acceptedOffers++
+                    if (item.rate) {
+                        stats.awerageRate += item.rate 
+                        stats.ratedOffers ++
+                    }
+                }
+                if (item.status == 'waiting') stats.waitingOffers++
+            })
+            if (stats.ratedOffers > 0)
+                stats.awerageRate /= stats.ratedOffers
+            else 
+                stats.awerageRate = 0
+            
+            return res.json(stats)
+        })
+        .catch(err => console.log(err))
+}
+
 //Exporting all the functions
 module.exports = {
     create,
@@ -76,5 +117,6 @@ module.exports = {
     status,
     get,
     getByUserId,
-    getByType
+    getByType,
+    stats
 };

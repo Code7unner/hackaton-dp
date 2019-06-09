@@ -2,11 +2,13 @@
   <div id="first-block">
     <div class="house-events">
       <div v-for="(event, index) in houseEvents" :key="index" class="event">
-        <div class="event-img"></div>
+        <div :class="`bg-${index+1}`" class="event-img"></div>
         <div class="event-contetn">
           <div class="header">{{event.type}}</div>
           <div class="content">{{event.info}}</div>
-          <div @click="openEvent(event.id)" class="btn">Подробнее</div>
+          <div  class="btn">
+            <router-link to="/eventdiscussions" class="nav-item">Обсудить</router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -39,7 +41,7 @@ export default {
       event.counts++
       alert('Спасибо за голос')
     },
-    unvotePetition(id) {
+    unvotePetition(event) {
       fetch(`/petitions/${event.id}`, {method: 'DELETE'})
       
     }     
@@ -91,6 +93,16 @@ export default {
   padding: 2rem;
   column-gap: 2em;
   
+  a {
+    text-decoration: none;
+    color: $julias-black;
+    font-size: $s-font-size;
+    transition: 0.5s;
+
+    &:hover{
+      padding-right: 1em;
+    }
+  }
 
   .house-events {
     &::-webkit-scrollbar-track {
@@ -125,11 +137,22 @@ export default {
       height: 15vw;
       margin: 0.6em 0;
 
+      .bg-1 {
+        background-image: url(../assets/water.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .bg-2 {
+        background-image: url(../assets/playground.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
       .event-img {
         width: 15vw;
         height: 100%;
         padding: 0;
-        background: rgba(0, 0, 0, 0.39);
       }
       
       .event-contetn {

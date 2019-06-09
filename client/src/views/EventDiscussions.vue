@@ -2,10 +2,10 @@
   <div id="event-discussion">
     <div class="event-list">
       <div :class="index % 2 == 0 ? 'left-item' : 'right-item'" class="list-slot" v-for="(item, index) in eventList" :key="index">
-        <div :class="index % 2 == 0 ? 'item-white' : 'item-black'" class="item">
-          <div class="item-img"></div>
-          <div class="item-header">qwe</div>
-          <div>asd</div>
+        <div :class="index % 2 == 0 ? 'item-white' : 'item-black'" @click="openDiscustion" class="item">
+          <div :class="`bg-${index+1}`" class="item-img"></div>
+          <div class="item-header">{{item.type}}</div>
+          <div>{{item.info}}</div>
         </div>
       </div>
     </div>
@@ -16,9 +16,31 @@
 export default {
   data() {
     return {
-      eventList: [{}, {}]
+      eventList: []
     }
-  }  
+  },
+  methods: {
+    openDiscustion() {
+      this.$router.push('/discussion')
+    } 
+  },
+  created() {
+    fetch(`/events/${this.user.id}`)
+    .then(data => {
+      data.json()
+        .then(events => {
+          this.eventList = events
+        })
+    })
+    .catch(err => {
+      console.log("event err:", err)
+    })
+  },
+  computed: {
+    user: function() {
+      return this.$store.state.user
+    }
+  },
 }
 </script>
 
@@ -40,6 +62,7 @@ export default {
       display: flex;
       border-bottom: 2px solid $julias-orange;
       flex-direction: row;
+      min-width: 600px;
       padding: 2em;
     }
 
@@ -55,18 +78,31 @@ export default {
       padding: 10px;
       display: grid;
       grid-template-rows: repeat(2, 80px);
-      grid-template-columns: 170px 1fr;
+      grid-template-columns: 170px 500px;
       grid-row-gap: 10px;
       grid-column-gap: 20px;    
       font-size: $s-font-size;
+      box-shadow: 0px 4px 4px rgba(243, 100, 77, 0.25);
       line-height: 40px;
       
       
       .item-img {
         grid-row: 1/3;
-        background: #C4C4C4;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       }
+
+      .bg-1 {
+        background-image: url(../assets/water.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .bg-2 {
+        background-image: url(../assets/playground.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
 
       .item-header {
         color: $julias-orange;

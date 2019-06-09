@@ -1,11 +1,9 @@
 <template>
   <div id=nav-bar>
-      <div class="nav-item nav-logo">Будка</div>
+      <div class="nav-item nav-logo"><img src="../assets/logo.png" alt="">Мой дом</div>
       <div class="routes">
-        <router-link to="/" class="nav-item">Мой дом</router-link>
-        <router-link to="/eventdiscussions" class="nav-item">Услуги</router-link>
-        <router-link to="/discussion" class="nav-item">Жилищная компания</router-link>
-        <router-link to="/forum" class="nav-item">Личный кабинет</router-link>
+        <router-link to="/" class="nav-item">Главная</router-link>
+        <router-link to="/forum" class="nav-item">Обсудить вопрос</router-link>
       </div>
   </div>
 </template>
@@ -44,11 +42,14 @@ export default {
   .routes {
     display: flex;
     justify-content: space-around;
-
+    align-items: center;
   }
 
   .nav-logo {
     padding-left: 7.1%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   }
 }
 </style>

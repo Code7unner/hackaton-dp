@@ -6,16 +6,19 @@ const auth = passport.authenticate('jwt', { session: false });
 
 const offerController = require("../offers/offers.controller");
 
-router.post('/', auth, offerController.create);
+router.get('/statistic', offerController.stats);
 
-router.post('/rate/:offer_id', auth, offerController.rate);
+router.post('/:id', offerController.create);
 
-router.post('/status/', auth, offerController.status);
+router.post('/rate/:offer_id', offerController.rate);
 
-router.get('/', auth, offerController.get);
+router.post('/status/', offerController.status);
 
-router.get('/:id', auth, offerController.getByUserId);
+router.get('/', offerController.get);
 
-router.get('/:type', auth, offerController.getByType);
+router.get('/:id', offerController.getByUserId);
+
+router.get('/:type', offerController.getByType);
+
 
 module.exports = router;

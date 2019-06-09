@@ -1,6 +1,11 @@
 <template>
   <div id="discussion">
+    
     <div class="header">
+      <svg @click="back" class="arrow" viewBox="0 0 23 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22.3536 4.35355C22.5488 4.15829 22.5488 3.84171 22.3536 3.64645L19.1716 0.464466C18.9763 0.269204 18.6597 0.269204 18.4645 0.464466C18.2692 0.659728 18.2692 0.976311 18.4645 1.17157L21.2929 4L18.4645 6.82843C18.2692 7.02369 18.2692 7.34027 18.4645 7.53553C18.6597 7.7308 18.9763 7.7308 19.1716 7.53553L22.3536 4.35355ZM0 4.5L22 4.5V3.5L0 3.5L0 4.5Z" fill="#2A2D34"/>
+      </svg>
+
       Название события
       <hr class="line">
     </div>
@@ -24,7 +29,12 @@ export default {
     return {
       messages: [{}, {}, {}, {}, {}, {}]
     }
-  }
+  },
+  methods: {
+    back() {
+      this.$router.go(-1)
+    }
+  },
 }
 </script>
 
@@ -40,6 +50,21 @@ export default {
   box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.25);
   padding-top: 50px;
   padding-bottom: 180px;
+
+  .arrow {
+    position: absolute;
+    left: 15px;
+    transform: rotate(180deg);
+    height: 20px;
+    width: 20px;
+    color: $julias-black;
+    transition: width 0.5s;
+
+    &:hover {
+      width: 40px;
+      color: $julias-orange;
+    }
+  }
 
   .header {
     position: relative;

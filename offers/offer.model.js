@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 
 // schema model
 const schema = new Schema({
-    user: {type: Schema.Types.ObjectId, ref: 'User'},
     info: {type: String, required: true},
+    user: {type: String},
     type: {type: String, enum: ['local', 'house', 'yard']},
     date: {type: Date, default: Date.now},
     status: {type: String, default: 'waiting'},
     rating: {type: Number},
-    house: {type: Schema.Types.ObjectId, ref: 'Location'}
+    house: {type: String}
 });
 
 schema.set('toJSON', {virtuals: true});

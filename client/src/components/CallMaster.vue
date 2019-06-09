@@ -31,9 +31,25 @@ export default {
   },
   methods: {
     offer() {
-      fetch(``, {method: 'POST', body: {
-
-      },)
+      fetch(`/offers/${this.user.id}`, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({
+          id: this.user.id,
+          info: this.offerDisc,
+          type: this.typeSelected
+        })
+      })
+      .then(() => this.offerDisc = '')
+      .catch(err => console.log(err))
+    }
+  },
+  computed: {
+    user: function() {
+      return this.$store.state.user
     }
   },
 }
