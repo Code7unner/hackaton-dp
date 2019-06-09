@@ -4,12 +4,18 @@
       <div class="routes">
         <router-link to="/" class="nav-item">Главная</router-link>
         <router-link to="/forum" class="nav-item">Обсудить вопрос</router-link>
+        <a @click="comingSoon">Личный кабинет</a>
       </div>
   </div>
 </template>
 
 <script>
 export default {
+  methods: {
+    comingSoon() {
+      alert("Скоро...")
+    }
+  },
   
 }
 </script>
