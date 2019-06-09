@@ -4,6 +4,7 @@ import MainPage from './views/MainPage.vue'
 import CurrentEventPage from './views/CurrentEventPage.vue'
 import EventDiscussions from './views/EventDiscussions.vue'
 import Discussion from './views/Discussion.vue'
+import Forum from './views/ForumDiscussions.vue'
 import CreateDiscussion from './views/CreateDiscussion.vue'
 
 Vue.use(Router)
@@ -32,6 +33,11 @@ export default new Router({
       path: '/discussion',
       name: 'discassion',
       component: Discussion
+    },
+    {
+      path: '/forum',
+      name: 'forum/discassion',
+      component: Forum
     },
     {
       path: '/creatediscussion',
