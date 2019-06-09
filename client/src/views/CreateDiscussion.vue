@@ -4,7 +4,7 @@
   <div id="create-discussion">
     <input placeholder="Заголовок обсуждения" type="text">
     <textarea placeholder="Сообщение..."></textarea>
-    <input type="button" value="Создать обсуждение"> 
+    <input @click="comingSoon" type="button" value="Создать обсуждение"> 
   </div>
   <div class="white-space"></div>
 
@@ -17,7 +17,12 @@ import forumNav from '../components/ForumNav.vue'
 export default {
   components: {
     forumNav
-  }
+  },
+  methods: {
+    comingSoon() {
+      alert('Скоро...')
+    }
+  },
 }
 </script>
 
