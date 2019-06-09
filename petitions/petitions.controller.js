@@ -36,8 +36,40 @@ function get(req, res) {
 		})
 }
 
+async function vote(req, res) {
+	const petition = await Petition.findOne({id: req.params.petition_id});
+
+	if (petition.counts == 120) {
+		return res.json(petition.counts);
+	}
+
+	Petition.findOneAndUpdate({id: req.params.petition_id}, {$inc:{'petition.counts'}})
+		.then(data => {
+			if (!data) {
+				return res.status(404).json('Petition not found');
+			} else {
+				return res.json(data.counts);
+			}
+		})
+		.catch(err => console.log(err))
+}
+
+function unvote(req, res) {
+	Petition.deleteOne({id: req.params.petition_id})
+		.then(petition => {
+			if (!petition) {
+				return res.status(404).json('Petition not found')
+			} else {
+				return res.json(petition);
+			}
+		})
+		.catch(err => console.log(err))
+}
+
 //Exporting all the functions
 module.exports = {
 	create,
-	get
+	get,
+	vote,
+	unvote
 };
